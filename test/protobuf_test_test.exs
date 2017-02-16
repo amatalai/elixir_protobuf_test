@@ -1,7 +1,7 @@
 defmodule ProtobufTestTest do
   use ExUnit.Case
 
-  @namespace ~r/(.*\s)([a-z]\w+\.)(.*)/
+  @namespace ~r/(.*\s)([a-z]\w+\.)[A-Z](.*)/
   @marked_namespace ~r/\/\/NAMESPACE$/
   @comment ~r/^\s*(\/\*\*|\*|\/\/)/
   @ignored_keywords ~r/^\s*(package|extend)/
@@ -12,12 +12,16 @@ defmodule ProtobufTestTest do
 
   defp valid_line?(line) do
     cond do
+      #ignore if line is comment
       String.match?(line, @comment) ->
         {:ok, line}
+      #ignore if like starts with ignored keyword
       String.match?(line, @ignored_keywords) ->
         {:ok, line}
+      #ignore if line dosn't contain namespace
       !String.match?(line, @namespace) ->
         {:ok, line}
+      #ignore if contained namespace is marked
       String.match?(line, @marked_namespace) ->
         {:ok, line}
       :else ->
