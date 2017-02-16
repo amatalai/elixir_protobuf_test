@@ -14,5 +14,5 @@ Submodule that allow us to check if protobuf definitions are compiled properly i
     - cd elixir_protobuf_test
     - mix deps.get
     - mix test
-    - mix run "lib/load_protobufs.exs"
+    - mix load_protobufs
 ```
