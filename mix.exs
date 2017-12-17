@@ -28,7 +28,7 @@ defmodule ProtobufTest.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:exprotobuf, github: "appunite/exprotobuf"}
+      {:exprotobuf, "~> 1.2.9"}
     ]
   end
 end
